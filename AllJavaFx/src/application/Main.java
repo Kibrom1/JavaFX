@@ -56,6 +56,9 @@ public class Main extends Application {
 			
 			primaryStage.setScene(new Scene(grid, 300, 275));
 			primaryStage.show();
+			
+			//this will add 
+			System.out.println("This is the first trial part in here");
 
 		} catch (Exception e) {
 			e.printStackTrace();
