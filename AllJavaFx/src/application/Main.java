@@ -1,5 +1,7 @@
 package application;
 
+import java.awt.Color;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -31,34 +34,46 @@ public class Main extends Application {
 
 			Text sceneTitle = new Text("Welcome");
 			sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+			sceneTitle.setId("welcome");
 
 			grid.add(sceneTitle, 0, 0, 2, 1);
 
-			grid.setGridLinesVisible(true);
+			//grid.setGridLinesVisible(true);
 
 			Label lbluserName = new Label("User Name:");
 			grid.add(lbluserName, 0, 1);
 
-			Text txtUserName= new Text();
+			TextField txtUserName = new TextField();
 			grid.add(txtUserName, 1, 1);
-			
+
 			Label lblpssword = new Label("Password:");
 			grid.add(lblpssword, 0, 2);
-			
+
 			PasswordField txtpssword = new PasswordField();
 			grid.add(txtpssword, 1, 2);
-			
+
 			Button btnSignin = new Button("Sign In");
+			// Button btnLogOut = new Button("Log out");
 			HBox hbxbtn = new HBox(10);
 			hbxbtn.setAlignment(Pos.BOTTOM_RIGHT);
 			hbxbtn.getChildren().add(btnSignin);
+			// hbxbtn.getChildren().add(btnLogOut);
 			grid.add(hbxbtn, 1, 4);
-			
-			primaryStage.setScene(new Scene(grid, 300, 275));
+
+			Text actionText = new Text();
+			actionText.setId("actionText");
+			grid.add(actionText, 1, 6);
+
+			btnSignin.setOnAction(e -> {
+				actionText.setText("Button Clicked");
+				actionText.setFill(javafx.scene.paint.Color.FIREBRICK);
+				btnSignin.setText("Button Clicked");
+			});
+
+			Scene scene = new Scene(grid, 350, 320);
+			scene.getStylesheets().add(getClass().getResource("login.css").toExternalForm());
+			primaryStage.setScene(scene);
 			primaryStage.show();
-			
-			//this will add 
-			System.out.println("This is the first trial part in here");
 
 		} catch (Exception e) {
 			e.printStackTrace();
